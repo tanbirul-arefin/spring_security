@@ -19,6 +19,12 @@ public class webSecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .headers(headerConfigure -> headerConfigure.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
 
+                //to config access control
+                .authorizeHttpRequests(httpsRequestConfigurer -> httpsRequestConfigurer
+                        .requestMatchers("/login").permitAll()
+                        .anyRequest().fullyAuthenticated()
+                )
+
                 .formLogin(formLoginConfigurer -> formLoginConfigurer
                         .loginPage("/login")
                 ).build();
