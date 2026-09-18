@@ -22,6 +22,9 @@ public class webSecurityConfig {
                 //to config access control
                 .authorizeHttpRequests(httpsRequestConfigurer -> httpsRequestConfigurer
                         .requestMatchers("/login").permitAll()
+                        .requestMatchers("/css/**").permitAll()
+                        .requestMatchers("/h2-console/**").permitAll()
+                        .requestMatchers("/login").permitAll()
                         .anyRequest().fullyAuthenticated()
                 )
 
